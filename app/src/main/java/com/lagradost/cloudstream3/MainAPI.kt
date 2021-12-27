@@ -48,6 +48,8 @@ object APIHolder {
         VidEmbedProvider(),
         VfFilmProvider(),
         VfSerieProvider(),
+        FrenchStreamProvider(),
+
         AsianLoadProvider(),
 
         SflixProvider("https://sflix.to", "Sflix"),
@@ -267,6 +269,10 @@ fun parseRating(ratingString: String?): Int? {
     if (ratingString == null) return null
     val floatRating = ratingString.toFloatOrNull() ?: return null
     return (floatRating * 10).toInt()
+}
+
+fun MainAPI.fixUrlNull(url : String?) : String? {
+    return fixUrl(url ?: return null)
 }
 
 fun MainAPI.fixUrl(url: String): String {
